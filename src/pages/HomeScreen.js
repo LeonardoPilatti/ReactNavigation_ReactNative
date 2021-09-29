@@ -1,18 +1,28 @@
 import React from 'react';
-import {Button, View, Text, StyleSheet} from 'react-native';
+import {Button, View, Text, TextInput, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
+  const [name, setName] = React.useState('');
+
   const navigation = useNavigation();
 
-  const handleSobreClick = () => {
-    navigation.navigate('About');
+  const handleSendButton = () => {
+    navigation.navigate('About', {
+      name: name, /// posso mandar só com ('About', {name})  por ser o mesmo nome;
+    });
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.texto}>Tela HOME</Text>
-      <Button title="Ir para a tela SOBRE" onPress={handleSobreClick} />
+      <Text>Qual seu nome?</Text>
+      <TextInput
+        style={styles.input}
+        value={name}
+        onChangeText={e => setName(e)}
+      />
+      <Button title="Enviar" onPress={handleSendButton} />
     </View>
   );
 };
@@ -26,6 +36,14 @@ const styles = StyleSheet.create({
   texto: {
     marginBottom: 15,
     fontSize: 18,
+  },
+  input: {
+    height: 40,
+    width: 250,
+    padding: 10,
+    marginTop: 15,
+    marginBottom: 15,
+    backgroundColor: '#ddd',
   },
 });
 

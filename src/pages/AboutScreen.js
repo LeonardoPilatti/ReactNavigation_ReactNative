@@ -1,9 +1,12 @@
 import React from 'react';
 import {Button, View, Text, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const AboutScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation(); /// para navegar para outra tela, no caso, estou usando o goBack para voltar para a última tela que foi, nesse caso, o HomeScreen;
+  const route = useRoute(); /// para receber algo como parametro;
+
+  const name = route.params?.name ?? 'Visitante'; /// para pegar o name que passei como parametro na tela HomeScreen/, se tiver nome, ele irá pegar o name, se não, irá colocar 'Visitante';
 
   const handleBackButton = () => {
     // navigation.navigate('Home');
@@ -13,7 +16,7 @@ const AboutScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Telinha de SOBRE</Text>
+      <Text>Tela de sobre: {name}</Text>
       <Button title="Voltar" onPress={handleBackButton} />
     </View>
   );
