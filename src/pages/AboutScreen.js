@@ -2,17 +2,19 @@ import React from 'react';
 import {Button, View, Text, StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const HomeScreen = () => {
+const AboutScreen = () => {
   const navigation = useNavigation();
 
-  const handleSobreClick = () => {
-    navigation.navigate('About');
+  const handleBackButton = () => {
+    // navigation.navigate('Home');
+    // ou
+    navigation.goBack();
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.texto}>Tela HOME</Text>
-      <Button title="Ir para a tela SOBRE" onPress={handleSobreClick} />
+      <Text>Telinha de SOBRE</Text>
+      <Button title="Voltar" onPress={handleBackButton} />
     </View>
   );
 };
@@ -23,10 +25,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  texto: {
-    marginBottom: 15,
-    fontSize: 18,
-  },
 });
 
-export default HomeScreen;
+export default AboutScreen;
