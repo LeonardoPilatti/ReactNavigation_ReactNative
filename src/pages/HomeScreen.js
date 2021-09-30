@@ -21,6 +21,7 @@ const HomeScreen = () => {
         style={styles.input}
         value={name}
         onChangeText={e => setName(e)}
+        // secureTextEntry={true}  /// para ele ficar como senha com '****';
       />
       <Button title="Enviar" onPress={handleSendButton} />
     </View>
