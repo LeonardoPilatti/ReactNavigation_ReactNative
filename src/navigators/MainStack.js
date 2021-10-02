@@ -4,6 +4,8 @@ import {Button, Text} from 'react-native';
 
 import HomeScreen from '../pages/HomeScreen';
 import AboutScreen from '../pages/AboutScreen';
+import ReduxPageScreen from '../pages/ReduxPageScreen';
+
 import Logo from '../components/Logo';
 
 const MainStack = createStackNavigator();
@@ -45,6 +47,7 @@ export default () => {
           title: route.params?.name ?? 'Visitante',
         })}
       />
+      <MainStack.Screen name="ReduxPage" component={ReduxPageScreen} />
     </MainStack.Navigator>
   );
 };

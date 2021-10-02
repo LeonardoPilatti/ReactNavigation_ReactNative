@@ -8,15 +8,21 @@ import CustomTabBar from '../components/CustomTabBar';
 import TabHomeScreen from '../pages/TabHomeScreen';
 import TabAboutScreen from '../pages/TabAboutScreen';
 import tabConfigScreen from '../pages/TabConfigScreen';
+import TabBarIcon from '../components/TabBarIcon';
 
 const MainTab = () => {
   const Tab = createBottomTabNavigator();
 
   return (
-    <Tab.Navigator tabBar={props => <CustomTabBar {...props} />}>
-      <Tab.Screen name="TabAbout" component={TabAboutScreen} />
-      <Tab.Screen name="TabHome" component={TabHomeScreen} />
-      <Tab.Screen name="TabConfigScreen" component={tabConfigScreen} />
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: () => <TabBarIcon name={route.name} />,
+      })}
+      initialRouteName="Home" /// para iniciar já na página Home;
+      tabBar={props => <CustomTabBar {...props} />}>
+      <Tab.Screen name="Sobre" component={TabAboutScreen} />
+      <Tab.Screen name="Home" component={TabHomeScreen} />
+      <Tab.Screen name="Config" component={tabConfigScreen} />
     </Tab.Navigator>
   );
 };
