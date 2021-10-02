@@ -14,11 +14,39 @@ const CustomTabBar = ({state, descriptors, navigation}) => {
           label = options.title;
         }
 
-        return (
-          <TouchableHighlight key={index} style={styles.tab}>
-            <Text style={styles.label}>{label}</Text>
-          </TouchableHighlight>
-        );
+        const isFocused = state.index === index;
+
+        const handleTabPress = () => {
+          navigation.navigate(route.name);
+        };
+
+        if (route.name == 'Home') {
+          return (
+            <TouchableHighlight
+              key={index}
+              style={styles.middleTab}
+              onPress={handleTabPress}
+              underlayColor="transparent">
+              <Text
+                style={[styles.label, isFocused ? styles.labelFocused : null]}>
+                {label}
+              </Text>
+            </TouchableHighlight>
+          );
+        } else {
+          return (
+            <TouchableHighlight
+              key={index}
+              style={styles.tab}
+              onPress={handleTabPress}
+              underlayColor="transparent">
+              <Text
+                style={[styles.label, isFocused ? styles.labelFocused : null]}>
+                {label}
+              </Text>
+            </TouchableHighlight>
+          );
+        }
       })}
     </View>
   );
@@ -27,16 +55,30 @@ const CustomTabBar = ({state, descriptors, navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    backgroundColor: '#aaa',
   },
   tab: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    height: 50,
   },
   label: {
     fontSize: 16,
     color: '#ff0000',
+  },
+  middleTab: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 70,
+    width: 70,
+    backgroundColor: '#00ff00',
+    marginTop: -20,
+    borderRadius: 35,
+  },
+  labelFocused: {
+    fontSize: 16,
+    color: '#0000ff',
   },
 });
 
